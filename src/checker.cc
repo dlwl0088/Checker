@@ -16,8 +16,10 @@ void Checker::Check(const Graph& data, const Graph& query,
 	for (size_t i = 0; i < embedding.num(); i++) {
 		for (Vertex u = 0; u < Nq; u++) {
 			for (Vertex v = u + 1; v < Nq; v++) {
-				if (embedding.image(i, u) == embedding.image(i, v)) {
-					correct = false;
+				//std::cout << i << " " << u << " " << v << "\n";
+				//std::cout << embedding.image(i, u) << " " << embedding.image(i, v) << "\n";
+				if (embedding.image(i, u) == embedding.image(i, v)) { 
+					correct = false; 
 					break;
 				}
 
@@ -25,13 +27,15 @@ void Checker::Check(const Graph& data, const Graph& query,
 			if (!correct) break;
 
 			v = embedding.image(i, u);
+			//std::cout << data.GetLabel(v) << " " << query.GetLabel(u) << "\n";
 			if (data.GetLabel(v) != query.GetLabel(u)) {
 				correct = false;
 				break;
 			}
 
 			for (size_t k = query.GetNeighborStartOffset(u); k < query.GetNeighborEndOffset(u); k++) {
-				if (!data.IsNeighbor(u, query.GetNeighbor(k))) {
+				//std::cout << u << " " << query.GetNeighbor(k) << "\n";
+				if (!data.IsNeighbor(embedding.image(i, u), embedding.image(i, query.GetNeighbor(k)))) {
 					correct = false;
 					break;
 				}
@@ -42,5 +46,6 @@ void Checker::Check(const Graph& data, const Graph& query,
 		}
 		if (!correct) break;
 	}
-	std::cout << correct << "\n";
+	if (correct) std::cout << "correct" << "\n";
+	else std::cout << "incorrect" << "\n";
 }
