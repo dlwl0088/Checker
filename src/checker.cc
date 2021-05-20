@@ -16,8 +16,8 @@ void Checker::Check(const Graph& data, const Graph& query,
 	for (size_t i = 0; i < embedding.num(); i++) {
 		for (Vertex u = 0; u < Nq; u++) {
 			for (Vertex v = u + 1; v < Nq; v++) {
-				if (embedding.image(i, u) == embedding.image(i, v)) { 
-					correct = false; 
+				if (embedding.image(i, u) == embedding.image(i, v)) {
+					correct = false;
 					break;
 				}
 
@@ -33,7 +33,7 @@ void Checker::Check(const Graph& data, const Graph& query,
 			for (size_t k = query.GetNeighborStartOffset(u); k < query.GetNeighborEndOffset(u); k++) {
 				if (!data.IsNeighbor(u, query.GetNeighbor(k))) {
 					correct = false;
-						break;
+					break;
 				}
 
 			}
@@ -42,5 +42,5 @@ void Checker::Check(const Graph& data, const Graph& query,
 		}
 		if (!correct) break;
 	}
-	std::cout <<correct<< "\n";
+	std::cout << correct << "\n";
 }
