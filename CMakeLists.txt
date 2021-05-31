@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(Checker)
+project(subgraph_matching)
 
 add_compile_options(-O3)
 add_compile_options(-Wall)

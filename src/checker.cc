@@ -46,6 +46,6 @@ void Checker::Check(const Graph& data, const Graph& query,
 		}
 		if (!correct) break;
 	}
-	if (correct) std::cout << "correct" << "\n";
-	else std::cout << "incorrect" << "\n";
+
+	std::cout << (correct ? "CORRECT" :"INCORRECT") << " "<< embedding.num()<< "\n";
 }

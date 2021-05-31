@@ -14,7 +14,7 @@ public:
 	~Embedding();
 
 	inline Vertex image(size_t i,Vertex u) const;
-	inline size_t Embedding::num() const;
+	inline size_t num() const;
 
 private:
 	std::vector<std::vector<Vertex>> embd_;

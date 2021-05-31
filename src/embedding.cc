@@ -19,15 +19,24 @@ Embedding::Embedding(const std::string& filename) {
 
     fin >> type >> num_query_vertices;
     embd_.clear();
+    bool done = false;
     while (fin >> type) {
         if (type == 'a') {
             Vertex v;
             embd_.push_back(std::vector<Vertex>(num_query_vertices));
             embd_[i].clear();
             for (Vertex u = 0; u < num_query_vertices; u++) {            
-                fin >> v;
-                embd_[i].push_back(v);
+                if (fin >> v) {
+                    embd_[i].push_back(v);
+                }
+                else {
+                    embd_.resize(i);
+                    done = true;
+                    break;
+                }
+                
             }
+            if (done) break;
         i++;
         }
     }
