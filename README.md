@@ -1,6 +1,6 @@
 # Graph Pattern Matching Challenge Checker
 ## Compile and Execute 
-### Put embedding files in ./embedding
+### Drop an embedding folder
 ```
 sh build.sh
 sh check.sh
