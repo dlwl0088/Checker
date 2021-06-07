@@ -46,6 +46,26 @@ void Checker::Check(const Graph& data, const Graph& query,
 		}
 		if (!correct) break;
 	}
-
+	
+	bool duplicate;
+	for (size_t i = 0; i < embedding.num(); i++) {
+		for (size_t j=i+1;j<embedding.num();j++) {
+			duplicate=true;
+			for (Vertex u = 0; u < Nq; u++) { 
+				if (embedding.image(i, u)!=embedding.image(j, u)){
+					duplicate=false;
+					break;
+				}
+			}
+			if (duplicate) {
+				correct=false;
+				break;
+			}
+		}
+		if (!correct) {
+			break;
+		}
+	}
+	
 	std::cout << (correct ? "CORRECT" :"INCORRECT") << " "<< embedding.num()<< "\n";
 }
